@@ -78,30 +78,28 @@ public class UF_HWQUPC implements UF {
      * @return the component identifier for the component containing site {@code p}
      * @throws IllegalArgumentException unless {@code 0 <= p < n}
      */
-    public int find(int p) {
+//    public int find(int p) {
 //        validate(p);
 //        int root = p;
 //        if(pathCompression){
-//            while(root!=parent[root]){
-//                parent[root]=parent[parent[root]];
-//                root=parent[root];
-//            }
+//            root=doPathCompression(p);
 //        }
 //        else{
 //            while(parent[root]!=root) root=parent[root];
 //        }
 //        return root;
+//    }
+    public int find(int p) {
         validate(p);
         int root = p;
-        if(pathCompression){
-            root=doPathCompression(p);
-        }
-        else{
-            while(parent[root]!=root) root=parent[root];
+        while(parent[root]!=root){
+            if(pathCompression){
+                doPathCompression(root);
+            }
+                root=parent[root];
         }
         return root;
     }
-
     /**
      * Returns true if the the two sites are in the same component.
      *
@@ -199,14 +197,16 @@ public class UF_HWQUPC implements UF {
     /**
      * This implements the single-pass path-halving mechanism of path compression
      */
-    private int doPathCompression(int i) {
-        while(i!=parent[i]){
-            parent[i]=parent[parent[i]];
-            i=parent[i];
-        }
-        return i;
+//    private int doPathCompression(int i) {
+//        while(i!=parent[i]){
+//            parent[i]=parent[parent[i]];
+//            i=parent[i];
+//        }
+//        return i;
+//    }
+    private void doPathCompression(int i) {
+        parent[i]=parent[parent[i]];
     }
-
     @Override
     public int count(){
         int n = count;
