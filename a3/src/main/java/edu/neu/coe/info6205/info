@@ -1,0 +1,25 @@
+class Person {
+    String name;
+    public Person(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return this.name;
+    }
+}
+class Car {
+    String name;
+    Person driver;
+    public Car(String name) {
+        this.name = name;
+    }
+    public Person getDriver() {
+        return this.driver;
+    }
+    public static void main(String args[]) {
+        Person driver = new Person("Alex");
+        Car car = new Car("driver");
+
+        System.out.print(car.getDriver().getName());
+    }
+}
